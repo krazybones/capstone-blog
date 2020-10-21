@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 class Post(models.Model):
     # define what we want in our blog
     title = models.CharField(max_length=250)
+    title_tag = models.CharField(max_length=250, default="Let's Chat! Blog")
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     body = models.TextField()
 
