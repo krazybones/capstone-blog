@@ -15,6 +15,8 @@ class HomeView(ListView):
     model = Post
     # which file to use
     template_name = 'home.html'
+    ordering = ['-post_date']
+    # new ordering won't take affect till after Blog 6
 
 
 class PostDetailView(DetailView):

@@ -8,7 +8,7 @@
             <a href="{% url 'post-detail' post.pk %}" class="card-title">{{post.title}}</a> - <small><a href="{% url 'post-edit' post.pk %}">[Edit]</a>|<a href="{% url 'post-delete' post.pk %}">[Delete]</a></small>
         </div>
         <div class="card-body">
-            <h6 class="card-subtitle mb-2 text-muted">By: {{post.author.first_name}} {{post.author.last_name}}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">By: {{post.author.first_name}} {{post.author.last_name}} - <small>{{post.post_date}}</small></h6>
             <p class="card-text">{{post.body}}</p>
         </div>
     </div>
