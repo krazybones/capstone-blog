@@ -13,3 +13,9 @@ class HomeView(ListView):
     model = Post
     # which file to use
     template_name = 'home.html'
+
+
+class PostDetailView(DetailView):
+    # same setup as HomeView
+    model = Post
+    template_name = 'post_detail.html'
