@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Delete a Blog Post{% endblock %}
+{% block content %}
+
+<div class="content-section">
+    <h4>Delete: {{post.title}}</h4>
+    <br>
+    <form method="POST">
+        {% csrf_token %}
+            <div class="form-group">
+                <strong>Delete Post?</strong><br>
+                <button class="btn btn-danger" type="submit">Yes</button>
+                <a href="{% url 'post-detail' post.pk %}" class="btn btn-secondary">No</a>
+            </div>
+    </form>
+</div>
+
+
+
+{% endblock %}
