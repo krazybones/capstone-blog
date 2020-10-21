@@ -29,3 +29,9 @@ class PostCreateView(CreateView):
     template_name = 'post_add.html'
     # designate fields to show
     # fields = '__all__'
+
+
+class PostUpdateView(UpdateView):
+    model = Post
+    template_name = 'post_edit.html'
+    fields = ['title', 'title_tag', 'body']
