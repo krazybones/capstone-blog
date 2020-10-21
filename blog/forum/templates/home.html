@@ -3,15 +3,17 @@
 <h1>Blog Posts</h1>
 
 {% for post in object_list %}
-    <div class="card" style="width: 18rem;">
-        <div class="card-header">
-            <a href="{% url 'post-detail' post.pk %}" class="card-title">{{post.title}}</a> - <small><a href="{% url 'post-edit' post.pk %}">[Edit]</a>|<a href="{% url 'post-delete' post.pk %}">[Delete]</a></small>
+    <div class="list-group">
+        <a href="{% url 'post-detail' post.pk %}" class="list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{post.title}}</h5>
+            <small>By: {{post.author.first_name}} {{post.author.last_name}} - {{post.post_date}}</small>
         </div>
-        <div class="card-body">
-            <h6 class="card-subtitle mb-2 text-muted">By: {{post.author.first_name}} {{post.author.last_name}} - <small>{{post.post_date}}</small></h6>
-            <p class="card-text">{{post.body}}</p>
-        </div>
+        <p class="mb-1">{{post.body}}</p>
+        </a>
+        <small><a href="{% url 'post-edit' post.pk %}">[Edit]</a>|<a href="{% url 'post-delete' post.pk %}">[Delete]</a></small>
     </div>
 {% endfor %}
 
 {% endblock %}
+
