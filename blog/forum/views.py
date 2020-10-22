@@ -18,6 +18,21 @@ class HomeView(ListView):
     ordering = ['-post_date']
     # new ordering won't take affect till after Blog 6
 
+    # passing the Category menu to the navbar
+    def get_context_data(self, *args, **kwargs):
+        # Category model only has 1 parameter hence no need to filter below:
+        ops_menu = Category.objects.all()
+        context = super(HomeView, self).get_context_data(*args, **kwargs)
+        context["ops_menu"] = ops_menu
+        return context
+
+
+def CategoryListView(request):
+    # querying the database for all Categories and assigning them a variable name
+    ops_menu_list = Category.objects.all()
+    # passing the variable to the page via variable
+    return render(request, 'category_list.html', {'ops_menu_list': ops_menu_list})
+
 
 def CategoryView(request, ops):
     category_posts = Post.objects.filter(category=ops)
@@ -28,6 +43,14 @@ class PostDetailView(DetailView):
     # same setup as HomeView
     model = Post
     template_name = 'post_detail.html'
+
+    # must pass below function in every view desired
+    def get_context_data(self, *args, **kwargs):
+        # Category model only has 1 parameter hence no need to filter below:
+        ops_menu = Category.objects.all()
+        context = super(PostDetailView, self).get_context_data(*args, **kwargs)
+        context["ops_menu"] = ops_menu
+        return context
 
 
 class PostCreateView(CreateView):

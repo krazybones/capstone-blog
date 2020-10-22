@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1>Blog Posts</h1>
+<hr>
+<br>
 
 {% for post in object_list %}
     <div class="list-group">
@@ -11,8 +13,8 @@
         </div>
         <p class="mb-1">{{post.body|slice:":100"|safe}}</p>
         </a>
-        {% if user.is_authenticated %}
-        <small><a href="{% url 'post-edit' post.pk %}">[Edit]</a>|<a href="{% url 'post-delete' post.pk %}">[Delete]</a>|<a href="{% url 'category-view' post.category %}">[{{post.category}}]</a></small>
+        {% if user.is_authenticated and post.author.id == user.id %}
+            <small><a href="{% url 'post-edit' post.pk %}">[Edit]</a>|<a href="{% url 'post-delete' post.pk %}">[Delete]</a></small><br/>
         {% endif %}
     </div>
 {% endfor %}

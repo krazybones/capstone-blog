@@ -3,23 +3,23 @@
 {% block title %}Delete a Blog Post{% endblock %}
 {% block content %}
 
-{% if user.is_authenticated %}
-<div class="content-section">
-    <h4>Delete: {{post.title}}</h4>
-    <br>
-    <form method="POST">
-        {% csrf_token %}
-            <div class="form-group">
-                <strong>Delete Post?</strong><br>
-                <button class="btn btn-danger" type="submit">Yes</button>
-                <a href="{% url 'post-detail' post.pk %}" class="btn btn-secondary">No</a>
-            </div>
-    </form>
-</div>
+{% if user.is_authenticated and post.author.id == user.id %}
+    <div class="content-section">
+        <h4>Delete: {{post.title}}</h4>
+        <br>
+        <form method="POST">
+            {% csrf_token %}
+                <div class="form-group">
+                    <strong>Delete Post?</strong><br>
+                    <button class="btn btn-danger" type="submit">Yes</button>
+                    <a href="{% url 'post-detail' post.pk %}" class="btn btn-secondary">No</a>
+                </div>
+        </form>
+    </div>
 {% else %}
-<div class="content-section">
-    <h3>Please <a class="ml-2" href="{% url 'login' %}">Login</a> to continue..</h3>
-</div>
+    <div class="content-section">
+        <h3>Please <a class="ml-2" href="{% url 'login' %}">Login</a> to continue..</h3>
+    </div>
 {% endif %}
 
 {% endblock %}
