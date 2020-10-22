@@ -9,9 +9,11 @@
             <h5 class="mb-1">{{post.title}}</h5>
             <small>By: {{post.author.first_name}} {{post.author.last_name}} - {{post.post_date}}</small>
         </div>
-        <p class="mb-1">{{post.body}}</p>
+        <p class="mb-1">{{post.body|slice:":100"}}</p>
         </a>
+        {% if user.is_authenticated %}
         <small><a href="{% url 'post-edit' post.pk %}">[Edit]</a>|<a href="{% url 'post-delete' post.pk %}">[Delete]</a></small>
+        {% endif %}
     </div>
 {% endfor %}
 
