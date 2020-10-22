@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Post
+from .models import Post, Category
 from .forms import PostForm
 from django.urls import reverse_lazy
 
@@ -19,6 +19,11 @@ class HomeView(ListView):
     # new ordering won't take affect till after Blog 6
 
 
+def CategoryView(request, ops):
+    category_posts = Post.objects.filter(category=ops)
+    return render(request, 'categories.html', {'ops': ops.title(), 'category_posts': category_posts})
+
+
 class PostDetailView(DetailView):
     # same setup as HomeView
     model = Post
@@ -32,6 +37,14 @@ class PostCreateView(CreateView):
     template_name = 'post_add.html'
     # designate fields to show
     # fields = '__all__'
+
+
+class CategoryCreateView(CreateView):
+    model = Category
+    # designate the form to be used
+    template_name = 'category_add.html'
+    # designate fields to show
+    fields = '__all__'
 
 
 class PostUpdateView(UpdateView):

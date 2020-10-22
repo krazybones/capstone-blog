@@ -12,7 +12,7 @@
         <p class="mb-1">{{post.body|slice:":100"|safe}}</p>
         </a>
         {% if user.is_authenticated %}
-        <small><a href="{% url 'post-edit' post.pk %}">[Edit]</a>|<a href="{% url 'post-delete' post.pk %}">[Delete]</a></small>
+        <small><a href="{% url 'post-edit' post.pk %}">[Edit]</a>|<a href="{% url 'post-delete' post.pk %}">[Delete]</a>|<a href="{% url 'category-view' post.category %}">[{{post.category}}]</a></small>
         {% endif %}
     </div>
 {% endfor %}
