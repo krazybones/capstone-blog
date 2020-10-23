@@ -20,7 +20,9 @@ class PostForm(forms.ModelForm):
     widgets = {
         'title': forms.TextInput(attrs={'class': 'form-control'}),
         'title_tag': forms.TextInput(attrs={'class': 'form-control'}),
-        'author': forms.Select(attrs={'class': 'form-control'}),
+        'author': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'id': 'show', 'type': 'hidden', 'placeholder': 'Enter Username..'}),
+        # video 17!!!!
+        # 'author': forms.Select(attrs={'class': 'form-control'}),
         'category': forms.ChoiceField(choices=option_list),
         'body': forms.Textarea(attrs={'class': 'form-control'}),
     }

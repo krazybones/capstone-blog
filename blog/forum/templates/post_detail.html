@@ -20,4 +20,23 @@
 
 <br><br>
 <a href="{% url 'home' %}" class="btn btn-primary">Back</a>
+
+<br><br>
+<hr>
+<br>
+<form action="{% url 'like-post' post.pk %}" method="POST">
+    {% csrf_token %}
+
+    {% if user.is_authenticated %}
+        {% if liked %}
+            <button type="submit" name="post_id" value="{{post.id}}" class="btn btn-danger btn-sm">Unlike</button>
+        {% else %}
+            <button type="submit" name="post_id" value="{{post.id}}" class="btn btn-success btn-sm">Like</button>
+        {% endif %}
+    {% else %}
+        <small>Please <a href="{% url 'login' %}">login</a> to like!</small>
+    {% endif %}
+    - {{total_likes}} Likes
+</form>
+
 {% endblock %}
