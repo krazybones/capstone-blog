@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     # User installed apps
     'forum',
     'accounts',
-    'crispy_forms'
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
