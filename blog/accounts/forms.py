@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 from django import forms
 
@@ -8,7 +8,7 @@ class RegisterForm(UserCreationForm):
         attrs={'class': 'form-control'}))
     first_name = forms.CharField(max_length=20, widget=forms.TextInput(
         attrs={'class': 'form-control'}))
-    first_name = forms.CharField(max_length=25, widget=forms.TextInput(
+    last_name = forms.CharField(max_length=25, widget=forms.TextInput(
         attrs={'class': 'form-control'}))
 
     class Meta:
@@ -22,3 +22,25 @@ class RegisterForm(UserCreationForm):
         self.fields['username'].widget.attrs['class'] = 'form-control'
         self.fields['password1'].widget.attrs['class'] = 'form-control'
         self.fields['password2'].widget.attrs['class'] = 'form-control'
+
+
+class EditProfileForm(UserChangeForm):
+    email = forms.EmailField(widget=forms.EmailInput(
+        attrs={'class': 'form-control'}))
+    first_name = forms.CharField(max_length=20, widget=forms.TextInput(
+        attrs={'class': 'form-control'}))
+    last_name = forms.CharField(max_length=25, widget=forms.TextInput(
+        attrs={'class': 'form-control'}))
+    username = forms.CharField(max_length=25, widget=forms.TextInput(
+        attrs={'class': 'form-control'}))
+    last_login = forms.CharField(max_length=25, widget=forms.TextInput(
+        attrs={'class': 'form-control'}))
+    is_active = forms.CharField(max_length=25, widget=forms.CheckboxInput(
+        attrs={'class': 'form-check'}))
+    date_joined = forms.CharField(max_length=25, widget=forms.TextInput(
+        attrs={'class': 'form-control'}))
+
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'last_name',
+                  'email', 'password', 'last_login', 'date_joined', 'is_active')
