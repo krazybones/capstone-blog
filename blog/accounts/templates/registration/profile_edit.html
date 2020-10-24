@@ -7,6 +7,8 @@
             {% csrf_token %}
                 <fieldset class="form-group">
                     <legend class="border-bottom mb-4">Update Your Profile</legend>
+                    {{user.profile.bio}}
+                    <br><br>
                     {{form|crispy}}
                 </fieldset>
                 <div class="form-group">

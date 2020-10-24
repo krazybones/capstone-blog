@@ -32,6 +32,22 @@ for item in options:
     option_list.append(item)
 
 
+class Profile(models.Model):
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    bio = models.TextField()
+    profile_pic = models.ImageField(
+        null=True, blank=True, upload_to="images/profile/")
+    website_url = models.CharField(max_length=250, blank=True, null=True)
+    facebook_url = models.CharField(max_length=250, blank=True, null=True)
+    insta_url = models.CharField(max_length=250, blank=True, null=True)
+    twitter_url = models.CharField(max_length=250, blank=True, null=True)
+    linkedin_url = models.CharField(max_length=250, blank=True, null=True)
+
+    # added for admin area
+    def __str__(self):
+        return str(self.user)
+
+
 class Post(models.Model):
     # define what we want in our blog
     title = models.CharField(max_length=250)
@@ -51,6 +67,7 @@ class Post(models.Model):
     def total_likes(self):
         return self.likes.count()
 
+    # added for the admin area
     def __str__(self):
         return self.title + '|' + str(self.author)
 
