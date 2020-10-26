@@ -43,18 +43,33 @@
             {% endif %}
 
         {% if user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'post-add' %}">Add Post</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'category-add' %}">Add Category</a>
-            </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Add [+]
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{% url 'post-add' %}">Post</a>
+              <a class="dropdown-item" href="{% url 'category-add' %}">Category</a>
+            </div>
+          </li>
           </ul>
         </div>
 
         <!-- Navbar Right Side -->
         <div class="navbar-nav">
-            <a class="nav-item nav-link" href="{% url 'edit-profile' %}">Profile</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Profile
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                {% if user.profile.id %}
+                <a class="dropdown-item" href="{% url 'profile-page' user.profile.id %}">Show Profile</a>
+                {% else %}
+                <a class="dropdown-item" href="{% url 'create-profile' %}">Create Profile</a>
+                {% endif %}
+                <a class="dropdown-item" href="{% url 'edit-profile' %}">Settings</a>
+              </div>
+            </li>
             <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
         </div>
         {% else %}
