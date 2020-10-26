@@ -61,20 +61,21 @@
         <div class="card-body">
           <h5 class="card-title">{{post.author.first_name}} {{post.author.last_name}}</h5>
           <p class="small text-muted">
+              <a href="{% url 'profile-page' post.author.profile.id %}">Profile</a>
                 {% if post.author.profile.website_url %}
-                    <a href="{{post.author.profile.website_url}}">Website | </a>
+                    | <a href="{{post.author.profile.website_url}}">Website</a>
                 {% endif %}
                 {% if post.author.profile.facebook_url %}
-                    <a href="{{post.author.profile.facebook_url}}">Facebook | </a>
+                    | <a href="{{post.author.profile.facebook_url}}">Facebook</a>
                 {% endif %}
                 {% if post.author.profile.twitter_url %}
-                    <a href="{{post.author.profile.twitter_url}}">Twitter | </a>
+                    | <a href="{{post.author.profile.twitter_url}}">Twitter</a>
                 {% endif %}
                 {% if post.author.profile.insta_url %}
-                    <a href="{{post.author.profile.insta_url}}">Instagram | </a>
+                    | <a href="{{post.author.profile.insta_url}}">Instagram</a>
                 {% endif %}
                 {% if post.author.profile.linkedin_url %}
-                    <a href="{{post.author.profile.linkedin_url}}">LinkedIn</a>
+                    | <a href="{{post.author.profile.linkedin_url}}">LinkedIn</a>
                 {% endif %}
           </p>
           <p class="card-text">{{post.author.profile.bio}}</p>
