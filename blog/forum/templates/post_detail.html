@@ -80,6 +80,11 @@
 
 <hr>
 <h5>Comments</h5>
+    {% if user.is_authenticated %}
+        <a class="btn btn-outline-info" href="{% url 'comment-add' post.pk %}">Add a Comment</a>
+    {% else %}
+        <small>Please <a href="{% url 'login' %}">login</a> to comment!</small><br>
+    {% endif %}
     {% if not post.comments.all %}
         Be the <a href="{% url 'comment-add' post.pk %}">first</a> to comment!
     {% else %}
@@ -92,7 +97,6 @@
             <br><br>
         {% endfor %}       
         <br><br>
-        <a class="btn btn-outline-info" href="{% url 'comment-add' post.pk %}">Add a Comment</a>
         <hr>
     {% endif %}
 
